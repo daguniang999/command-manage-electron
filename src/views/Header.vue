@@ -49,12 +49,6 @@
                   <span>{{ item }}</span>
                 </a-list-item>
               </template>
-              <!-- <template #header> -->
-              <!--   <div>Header</div> -->
-              <!-- </template> -->
-              <!-- <template #footer> -->
-              <!--   <div>Footer</div> -->
-              <!-- </template> -->
             </a-list>
           </div>
           <!-- <Setting></Setting> -->

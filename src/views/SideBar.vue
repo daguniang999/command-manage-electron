@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="sidebar">
     sidebar
   </div>
 </template>
@@ -13,6 +13,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+  #siderbar {
+    height: 100%;
+  } 
 
 </style>
