@@ -2,10 +2,11 @@
   import Header from './Header.vue'
   import SideBar from './SideBar.vue'
   import Dialog from './Dialog.vue'
+  import Content from './Content.vue'
 </script>
 
 <template>
-  <div style="height: 100%">
+  <div id="home" style="height: 100%">
     <a-layout>
       <a-layout-header>
         <Header></Header>
@@ -18,7 +19,7 @@
 
         <a-layout>
           <a-layout-content>
-            <span>test</span>
+            <Content></Content>
           </a-layout-content>
         </a-layout>
       </a-layout>
@@ -31,8 +32,10 @@
 </template>
 
 <style lang="less" scoped>
+  
   .ant-layout {
     height: 100%;
+    overflow: auto;
     background: transparent;
   }
 

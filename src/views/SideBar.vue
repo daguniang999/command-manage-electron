@@ -35,6 +35,7 @@ export default {
 <style lang="less" scoped>
   #siderbar {
     height: 100%;
+    overflow: auto;
   } 
 
 </style>
