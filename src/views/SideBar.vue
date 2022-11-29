@@ -1,33 +1,44 @@
 <template>
   <div id="sidebar">
-    <a-menu
-      mode="inline">
-      <a-menu-item key="1">
-        1
-      </a-menu-item>
-      <a-menu-item key="2">
-        2
-      </a-menu-item>
-      <a-sub-menu key="3" title="tree">
-        <a-menu-item key="4">
-          4
+    <a-menu v-model="groupTree" mode="inline">
+      <template v-for="item in groupTree">
+        <a-menu-item>
+          <span>{{ item.name }}</span>
         </a-menu-item>
-        <a-sub-menu title="ff">
-          <a-menu-item key="5">
-            4
-          </a-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
+      </template>
     </a-menu>
-
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import {
+  ref,
+  onMounted
+} from 'vue'
+
+
 export default {
   setup () {
+    const groupTree = ref()
+    const getGroupTree = () => {
+      axios.get('/back/group/tree').then(res => {
+        if (res.data.code == 0) {
+          groupTree.value = res.data.data
+        }
+      }).catch(err => {
+        console.log("err")
+      })
+    }
 
-    return {}
+    onMounted (() => {
+      getGroupTree()
+    })
+
+    return {
+      groupTree,
+      getGroupTree,
+    }
   }
 }
 </script>
