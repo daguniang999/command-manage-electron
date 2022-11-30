@@ -1,28 +1,8 @@
-<script>
-  import { reactive, ref } from 'vue'
-  import Setting from './Setting.vue'
-
-  export default {
-    components: {
-      Setting
-    },
-    setup() {
-      const isSetting = ref(false)
-
-      const handleClick_Setting = () => {
-        isSetting.value = true
-      }
-
-      return { isSetting, handleClick_Setting }
-    }
-  }
-</script>
-
 <template>
   <div id="header">
     <!-- 左边按钮 -->
     <div id="left_button">
-      <a-button>
+      <a-button @click="handleSidebar">
         <svg-icon :name="'sidebar'"></svg-icon>
       </a-button>
       <a-button>
@@ -38,34 +18,67 @@
     </div>
 
     <!-- 右侧按钮 -->
-    <div id="right_button">
-      <a-popover trigger="click">
-        <template #content>
-          <div>
-            <a-list size="small" bordered :data-source="['导入', '导出', '设置']">
-              <template #renderItem="{ item }">
-                <a-list-item style="display: flex; align-items: center; justify-content: center; align-items: center">
-                  <svg-icon :name="'plus'"></svg-icon>
-                  <span>{{ item }}</span>
-                </a-list-item>
-              </template>
-              <!-- <template #header> -->
-              <!--   <div>Header</div> -->
-              <!-- </template> -->
-              <!-- <template #footer> -->
-              <!--   <div>Footer</div> -->
-              <!-- </template> -->
-            </a-list>
-          </div>
-          <!-- <Setting></Setting> -->
-        </template>
+    <div class="head-right">
+      <div>
         <a-button>
-          <svg-icon :name="'setting'"></svg-icon>
+          <svg-icon name="plus"/>
         </a-button>
-      </a-popover>
+      </div>
+      <div id="right_button">
+        <a-popover trigger="click">
+          <template #content>
+            <div>
+              <a-list size="small" bordered :data-source="['导入', '导出', '设置']">
+                <template #renderItem="{ item }">
+                  <a-list-item style="display: flex; align-items: center; justify-content: center; align-items: center">
+                    <svg-icon :name="'plus'"></svg-icon>
+                    <span>{{ item }}</span>
+                  </a-list-item>
+                </template>
+                <!-- <template #header> -->
+                <!--   <div>Header</div> -->
+                <!-- </template> -->
+                <!-- <template #footer> -->
+                <!--   <div>Footer</div> -->
+                <!-- </template> -->
+              </a-list>
+            </div>
+            <!-- <Setting></Setting> -->
+          </template>
+          <a-button>
+            <svg-icon :name="'setting'"></svg-icon>
+          </a-button>
+        </a-popover>
+      </div>
     </div>
   </div>
 </template>
+
+<script setup>
+  import { mainStore } from '../store/index'
+  import { storeToRefs } from 'pinia'
+  import { reactive, ref } from 'vue'
+  import Setting from './Setting.vue'
+
+  // const
+  const store = mainStore()
+  const { isOpen } = storeToRefs(store)
+  const isSetting = ref(false)
+
+  // function
+  const handleClick_Setting = () => {
+    isSetting.value = true
+  }
+
+  const handleSidebar = () => {
+    isOpen.value = !isOpen.value
+    console.log(isOpen.value)
+  }
+
+
+
+
+</script>
 
 
 <style lang="less">
@@ -105,7 +118,7 @@
     align-items: center;
     align-content: center;
     justify-content: flex-end;
-    width: 40px;
+    width: 100px;
   }
 
   #header #right_button button {
@@ -163,5 +176,12 @@
   
   .ant-list-bordered {
     border: none !important;
+  }
+
+  .head-right {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: right;
   }
 </style>

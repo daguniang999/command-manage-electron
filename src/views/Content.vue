@@ -1,20 +1,7 @@
 <template>
   <div id="content">
-    <div>
-      <a-card title="Default size card" style="width: 300px">
-        <template #extra><a href="#">less</a></template>
-        <p>card vvvvvvvvv</p>
-        <p>fdasf</p>
-        <p>cardttttcontent</p>
-      </a-card>
-    </div>
-    <div>
-      <a-card title="Default size card" style="width: 300px">
-        <template #extra><a href="#">more</a></template>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
+    <div v-for="item in commandData" v-bind:key="item.groupId">
+      <c-card :title="item.name" :description="item.description"></c-card>
     </div>
 
     <a-modal v-model:visible="visible" title="Basic Modal" @ok="handleOk">
@@ -23,33 +10,39 @@
         name="basic"
         :label-col="{ span: 8 }"
         :wrapper-col="{ span: 16 }"
-        autocomplete="off"
-      >
-        <a-form-item
-          label="Username"
-          name="username"
-          :rules="[{ required: true, message: 'Please input your username!' }]"
-        >
-          <a-input v-model:value="formState.username" />
-        </a-form-item>
+        autocomplete="off">
+
       </a-form>
     </a-modal>
 
-    <a-button @click="handlerClick">axios</a-button>
+
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { ref, watch } from 'vue'
+import CCard from '../components/card/CCard.vue'
+import { onMounted } from 'vue'
 export default {
   setup () {
     const formState = ref({})
     const visible = ref(false)
+    const commandData = ref({})
 
-    watch(visible, () => {
-      console.log(visible.value) 
-    })
+
+    const headStyle = {
+      "height": "200px",
+    }
+
+    const getCommandList = () => {
+      axios.get(`/back/command`).then(res => {
+        if (res.data.code == 0) {
+          commandData.value = res.data.data
+        }
+      }).catch(err => {
+      })
+    }
 
     let handleOk = () => {
       console.log("ok")
@@ -59,32 +52,37 @@ export default {
     let handlerClick = () => {
       visible.value = !visible.value
     }
+  
+    onMounted(() => {
+      getCommandList()
+    })
 
     return {
        handlerClick,
        visible,
        handleOk,
-       formState
+       formState,
+       getCommandList,
+       commandData,
+       headStyle
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-  #content {
-    display: flex;
-    align-content: center;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 10px 10px;
-    flex-wrap: wrap;
+#content {
+  display: flex;
+  align-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 10px 10px;
+  flex-wrap: wrap;
 
-    div {
-      margin: 2px 5px;
-    }
-    background-color: transparent;
+  div {
+    margin: 2px 5px;
   }
-
-
+  background-color: transparent;
+}
 
 </style>

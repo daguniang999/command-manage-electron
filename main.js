@@ -25,9 +25,9 @@ const createWindow = () => {
   win.webContents.openDevTools()
 
   // 加载完成才打开窗口
-  win.on('ready-to-show', () => {
-    win.show()
-  })
+  // win.on('ready-to-show', () => {
+  //   win.show()
+  // })
 
   // 使用窗口管理
   winState.manage(win)
