@@ -1,22 +1,18 @@
 <template>
   <div id="sidebar">
-    <a-menu v-model="groupTree" mode="inline">
-      <template v-for="item in groupTree">
-        <a-menu-item>
-          <span>{{ item.name }}</span>
-        </a-menu-item>
-      </template>
-    </a-menu>
+    <a-tree
+     :tree-data="groupTree"
+    >
+      <template #title="{ name, groupId, parentGroupId }">
+        <span style="color: #1890ff">{{ name }}</span>
+      </template>    
+    </a-tree>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import {
-  ref,
-  onMounted
-} from 'vue'
-
+import { ref, onMounted } from 'vue'
 
 export default {
   setup () {
