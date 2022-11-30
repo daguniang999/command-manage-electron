@@ -19,11 +19,6 @@
 
     <!-- 右侧按钮 -->
     <div class="head-right">
-      <div>
-        <a-button>
-          <svg-icon name="plus"/>
-        </a-button>
-      </div>
       <div id="right_button">
         <a-popover trigger="click">
           <template #content>
@@ -72,7 +67,6 @@
 
   const handleSidebar = () => {
     isOpen.value = !isOpen.value
-    console.log(isOpen.value)
   }
 
 
@@ -110,7 +104,10 @@
     background: transparent;
     height: 40px; 
     width: 40px;
-    padding: 0;
+    padding: 4px;
+    border-radius: 10px;
+    background-clip: content-box;
+
   }
 
   #header #right_button {
@@ -130,7 +127,9 @@
     background: transparent;
     height: 40px; 
     width: 40px;
-    padding: 0;
+    padding: 4px;
+    border-radius: 10px;
+    background-clip: content-box;
   }
 
   #header #title {
@@ -171,7 +170,7 @@
 
   .ant-popover-placement-bottom, .ant-popover-placement-bottomLeft, .ant-popover-placement-bottomRight {
     padding-top: 5px !important;
-    left: calc(100% - 110px) !important;
+    left: calc(100% - 95px) !important;
   }
   
   .ant-list-bordered {
@@ -183,5 +182,21 @@
     align-items: center;
     align-content: center;
     justify-content: right;
+  }
+
+  button[ant-click-animating-without-extra-node]:after {
+    border: 0 none;
+    opacity: 0;
+    animation:none 0 ease 0 1 normal;
+    outline:none;
+  }
+  .ant-btn:hover  {
+    color: black !important;
+    border-color: #e7e5eb !important;
+    background-color: #eaf0f6 !important;
+  }
+  .ant-btn:focus {
+    color: black !important;
+    border-color: #e7e5eb !important;
   }
 </style>

@@ -71,18 +71,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#content {
-  display: flex;
-  align-content: center;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 10px 10px;
-  flex-wrap: wrap;
+  #content {
+    display: flex;
+    align-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px 10px;
+    flex-wrap: wrap;
 
-  div {
-    margin: 2px 5px;
+    div {
+      margin: 2px 5px;
+    }
+    background-color: transparent;
   }
-  background-color: transparent;
-}
+
+
 
 </style>

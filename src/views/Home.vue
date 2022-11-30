@@ -1,19 +1,12 @@
-<script setup>
-  import Header from './Header.vue'
-  import SideBar from './SideBar.vue'
-  import Dialog from './Dialog.vue'
-  import Content from './Content.vue'
-</script>
 
 <template>
-  <div id="home" style="height: 100%">
+  <div id="home" style="height: 100%; width: 100%">
     <a-layout>
       <a-layout-header>
         <Header></Header>
       </a-layout-header>
-
       <a-layout>
-        <a-layout-sider>
+        <a-layout-sider :hidden="isOpen">
           <SideBar></SideBar>
         </a-layout-sider>
 
@@ -25,11 +18,23 @@
       </a-layout>
 
     </a-layout>
-
-    <!-- <Dialog></Dialog> -->
-
   </div>
 </template>
+
+<script setup>
+  import Header from './Header.vue'
+  import SideBar from './SideBar.vue'
+  import Dialog from './Dialog.vue'
+  import Content from './Content.vue'
+  import { mainStore } from '../store/index'
+  import { storeToRefs } from 'pinia'
+
+  const store = mainStore()
+  const { isOpen } = storeToRefs(store)
+
+
+
+</script>
 
 <style lang="less" scoped>
   

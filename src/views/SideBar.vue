@@ -1,10 +1,13 @@
 <template>
   <div id="sidebar">
+    <div style="width: 100%">
+      <a-button style="width: 100%">+</a-button>
+    </div>
     <a-tree
      :tree-data="groupTree"
     >
       <template #title="{ name, groupId, parentGroupId }">
-        <span style="color: #1890ff">{{ name }}</span>
+        <span>{{ name }}</span>
       </template>    
     </a-tree>
   </div>
