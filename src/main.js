@@ -13,5 +13,12 @@ const pinia = createPinia()
 app.use(pinia)
 app.use(router)
 app.component('svg-icon', svgIcon)
-app.mount('#app')
 
+// 全局指令
+app.directive('focus', {
+  mounted(el) {
+    el.focus();
+  }
+})
+
+app.mount('#app')

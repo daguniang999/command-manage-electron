@@ -2,13 +2,13 @@
   <div id="header">
     <!-- 左边按钮 -->
     <div id="left_button">
-      <a-button @click="handleHome">
+      <a-button @click="handleHome" tabindex="-1">
         <svg-icon :name="'home'"></svg-icon>
       </a-button>
-      <a-button @click="handleSidebar">
+      <a-button @click="handleSidebar" tabindex="-1">
         <svg-icon :name="'sidebar'"></svg-icon>
       </a-button>
-      <a-button @click="handleAdd">
+      <a-button @click="handleAdd" tabindex="-1">
         <svg-icon :name="'plus'"></svg-icon>
       </a-button>
     </div>
@@ -23,22 +23,24 @@
     <!-- 右侧按钮 -->
     <div class="head-right">
       <div id="right_button">
-        <a-popover trigger="click">
-          <template #content>
-            <div>
-              <a-list size="small" bordered :data-source="['导入', '导出', '设置']">
-                <template #renderItem="{ item }">
-                  <a-list-item style="display: flex; align-items: center; justify-content: center; align-items: center">
-                    <svg-icon :name="'plus'"></svg-icon>
-                    <span>{{ item }}</span>
-                  </a-list-item>
-                </template>
-              </a-list>
-            </div>
-            <!-- <Setting></Setting> -->
-          </template>
-          <a-button>
-            <svg-icon :name="'setting'"></svg-icon>
+        <a-popover> 
+          <!-- <template #content> -->
+          <!--   <div> -->
+          <!--     <a-list size="small" bordered :data-source="['导入', '导出', '设置']"> -->
+          <!--       <template #renderItem="{ item }"> -->
+          <!--         <a-list-item style="display: flex; align-items: center; justify-content: center; align-items: center"> -->
+          <!--           <svg-icon :name="'plus'"></svg-icon> -->
+          <!--           <span>{{ item }}</span> -->
+          <!--         </a-list-item> -->
+          <!--       </template> -->
+          <!--     </a-list> -->
+          <!--   </div> -->
+          <!-- </template> -->
+          <a-button @click="handleRefresh" tabindex="-1">
+            <svg-icon name="refresh"></svg-icon>
+          </a-button>
+          <a-button tabindex="-1">
+            <svg-icon name="setting"></svg-icon>
           </a-button>
         </a-popover>
       </div>
@@ -59,8 +61,7 @@
   const { isOpen } = storeToRefs(store)
   const isSetting = ref(false)
 
-  // function
-  const handleClick_Setting = () => {
+  const handleSetting = () => {
     isSetting.value = true
   }
 
@@ -74,6 +75,10 @@
 
   const handleHome = () => {
     router.push('/home')
+  }
+
+  const handleRefresh = () => {
+    console.log("refresh")
   }
 
 

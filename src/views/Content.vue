@@ -76,7 +76,7 @@ export default {
     align-content: center;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 10px 10px;
+    padding: 10px 0px 10px 10px;
     flex-wrap: wrap;
 
     div {
