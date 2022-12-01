@@ -1,23 +1,15 @@
 
 <template>
-  <div id="home" style="height: 100%; width: 100%">
-    <a-layout>
-      <a-layout-header>
-        <Header></Header>
-      </a-layout-header>
-      <a-layout>
-        <a-layout-sider :hidden="isOpen">
+  <div class="home" style="height: 100%; width: 100%">
+        <!-- <Header></Header> -->
+      <div class="home-content">
+        <div class="home-left" :hidden="isOpen">
           <SideBar></SideBar>
-        </a-layout-sider>
-
-        <a-layout>
-          <a-layout-content>
-            <Content></Content>
-          </a-layout-content>
-        </a-layout>
-      </a-layout>
-
-    </a-layout>
+        </div>
+        <div class="home-right">
+          <Content></Content>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -37,19 +29,26 @@
 </script>
 
 <style lang="less" scoped>
-  
-  .ant-layout {
-    height: 100%;
-    overflow: auto;
-    background: transparent;
-  }
+.home-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 
-  .ant-layout-header {
-    padding: 0;
-    height: 40px;
-  }
-  .ant-layout-sider {
-    background: #eae8ee;
-    border-right: solid 1px #c5c5c5;
-  }
+}
+
+.home-left {
+  width: 200px;
+  height: 100%;
+  border-right: 1px solid #b5b5b5;
+  overflow: auto;
+}
+
+.home-right {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+}
+
 </style>

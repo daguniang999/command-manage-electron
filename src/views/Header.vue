@@ -5,7 +5,7 @@
       <a-button @click="handleSidebar">
         <svg-icon :name="'sidebar'"></svg-icon>
       </a-button>
-      <a-button>
+      <a-button @click="handleAdd">
         <svg-icon :name="'plus'"></svg-icon>
       </a-button>
     </div>
@@ -54,8 +54,10 @@
   import { storeToRefs } from 'pinia'
   import { reactive, ref } from 'vue'
   import Setting from './Setting.vue'
+  import { useRouter } from 'vue-router'
 
   // const
+  const router = useRouter()
   const store = mainStore()
   const { isOpen } = storeToRefs(store)
   const isSetting = ref(false)
@@ -67,6 +69,10 @@
 
   const handleSidebar = () => {
     isOpen.value = !isOpen.value
+  }
+
+  const handleAdd = () => {
+    router.push('/command') 
   }
 
 

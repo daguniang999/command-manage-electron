@@ -7,3 +7,22 @@ html, body {
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 16px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  	background-image: repeating-linear-gradient(45deg, #acacac 0, #acacac 1px, transparent 0, transparent 50%);
+  	background-size: 10px 10px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 3px;
+    border: 1px solid #acacac;
+    box-shadow: inset 1px 1px 5px #acacac ;
+}
+/* 非激活窗口 */
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0,255,0,0.4);
+}

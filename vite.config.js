@@ -4,6 +4,7 @@ import path from 'path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import Pages from 'vite-plugin-pages'
 
 export default defineConfig({
   plugins: [
@@ -14,7 +15,8 @@ export default defineConfig({
     }),
     Components({
       resolvers: [AntDesignVueResolver()]
-    })
+    }),
+    Pages()
   ],
   resolve: {
     alias: {

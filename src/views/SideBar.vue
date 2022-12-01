@@ -6,7 +6,7 @@
     <a-tree
      :tree-data="groupTree"
     >
-      <template #title="{ name, groupId, parentGroupId }">
+      <template #title="{ name }">
         <span>{{ name }}</span>
       </template>    
     </a-tree>
@@ -44,8 +44,8 @@ export default {
 
 <style lang="less" scoped>
   #siderbar {
+    width: 100%;
     height: 100%;
-    overflow: auto;
   } 
 
 </style>
