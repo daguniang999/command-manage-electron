@@ -2,6 +2,9 @@
   <div id="header">
     <!-- 左边按钮 -->
     <div id="left_button">
+      <a-button @click="handleHome">
+        <svg-icon :name="'home'"></svg-icon>
+      </a-button>
       <a-button @click="handleSidebar">
         <svg-icon :name="'sidebar'"></svg-icon>
       </a-button>
@@ -30,12 +33,6 @@
                     <span>{{ item }}</span>
                   </a-list-item>
                 </template>
-                <!-- <template #header> -->
-                <!--   <div>Header</div> -->
-                <!-- </template> -->
-                <!-- <template #footer> -->
-                <!--   <div>Footer</div> -->
-                <!-- </template> -->
               </a-list>
             </div>
             <!-- <Setting></Setting> -->
@@ -75,6 +72,10 @@
     router.push('/command') 
   }
 
+  const handleHome = () => {
+    router.push('/home')
+  }
+
 
 
 
@@ -95,10 +96,11 @@
 
   #header #left_button {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     align-content: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 10px;
+    min-width: 200px;
   }
 
   #header #left_button button {
@@ -121,7 +123,7 @@
     align-items: center;
     align-content: center;
     justify-content: flex-end;
-    width: 100px;
+    width: 280px;
   }
 
   #header #right_button button {
@@ -141,9 +143,9 @@
   #header #title {
     display: flex;
     align-items: center;
-    align-content: center;
     justify-content: center;
     width: 100%;
+    left: 100px;
     height: 100%;
   }
 

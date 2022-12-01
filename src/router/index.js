@@ -6,7 +6,7 @@ const router = createRouter({
   history: createWebHistory(),  // history 模式
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: () => import('../views/Home.vue'),
       meta: {
@@ -22,8 +22,8 @@ const router = createRouter({
       },
     },
     {
-      path: '/*',
-      redirect: '/',
+      path: '/',
+      redirect: '/home',
     },
   ]
 })

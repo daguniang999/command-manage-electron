@@ -28,7 +28,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/back': {
-        target: 'http://localhost:8001',
+        target: 'http://localhost:8002',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/back/, '')
       }

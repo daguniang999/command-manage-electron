@@ -43,9 +43,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  #siderbar {
-    width: 100%;
-    height: 100%;
-  } 
+#siderbar {
+  width: 100%;
+  height: 100%;
+} 
+
+.ant-btn {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
 
 </style>
