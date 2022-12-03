@@ -16,7 +16,10 @@ const createWindow = () => {
     hasShadow: true,
     // 显示系统自带的关闭按钮
     autoHideMenuBar: true,
-    titleBarStyle: 'hiddenInset'
+    titleBarStyle: 'hiddenInset',
+    webPreferences: {
+      spellcheck: false
+    }
   })
 
   win.loadURL("http://localhost:5173")
