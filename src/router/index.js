@@ -22,14 +22,6 @@ const router = createRouter({
       },
     },
     {
-      path: '/commandArg',
-      name: 'commandArg',
-      component: () => import('../views/AddCommandArg.vue'),
-      meta: {
-        title: '命令参数添加页面',
-      },
-    },
-    {
       path: '/',
       redirect: '/command',
     },
