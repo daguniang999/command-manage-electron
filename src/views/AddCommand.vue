@@ -1,8 +1,8 @@
 <template>
   <div class="command">
     <div class="button_space">
-      <a-button @click="handleCommand"> 添加命令 </a-button>
-      <a-button @click="handleArg"> 添加参数 </a-button>
+      <a-button @click="commandVisiable = true"> 添加命令 </a-button>
+      <a-button @click="argVisible = true"> 添加参数 </a-button>
     </div>
     <div class="command_dialog">
       <a-modal
@@ -14,6 +14,34 @@
       >
         <a-form :model="commandData">
           <a-form-item :hidden="true" name="commandId"> </a-form-item>
+          <a-form-item
+            label="分组"
+            name="groupId"
+            :rules="[{ required: true, message: '请选择分组' }]"
+          >
+            <!-- <a-tree-select -->
+            <!--   v-model:value="commandData.groupId" -->
+            <!--   placeholder="Please select" -->
+            <!--   :tree-data="groupData.data" -->
+            <!-- > -->
+            <!-- </a-tree-select> -->
+            <a-tree-select
+              v-model:value="commandData.groupId"
+              show-search
+              style="width: 100%"
+              :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
+              placeholder="请选择"
+              allow-clear
+              tree-default-expand-all
+              :tree-data="groupData.data"
+              :fieldNames="{ value: 'groupId' }"
+            >
+              <template #title="{ groupId, name }">
+                {{ name }} {{ groupId }}
+              </template>
+            </a-tree-select>
+          </a-form-item>
+
           <a-form-item
             label="命令名称"
             name="name"
@@ -85,19 +113,26 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
+import { onMounted } from "vue";
 import ArgCard from "../components/card/ArgCard.vue";
 
 // 变量
 const commandVisiable = ref(true);
 const argVisible = ref(false);
+const groupData = reactive({
+  data: [],
+});
+
 const commandData = reactive({
   commandId: "1",
+  groupId: "",
   name: "",
   description: "",
 });
-
+const commandId = ref();
 const argData = reactive({
   commandId: "1",
   commandArgId: "2",
@@ -108,17 +143,48 @@ const argData = reactive({
   description: "",
 });
 
-const handleCommand = () => {
-  console.log(commandData);
-  commandVisiable.value = true;
-};
-const handleArg = () => {
-  console.log(argData);
-  argVisible.value = true;
+const getGroupTree = () => {
+  axios
+    .get("/back/group/tree")
+    .then((res) => {
+      if (res.data.code == 0) {
+        console.log(res.data.data);
+        groupData.data = res.data.data;
+      }
+    })
+    .catch((err) => {
+      console.log("err");
+    });
 };
 
-const handleFinish = (value) => {
-  console.log(value, "test");
+onMounted(() => {
+  console.log("mount");
+  getGroupTree();
+});
+
+// 提交命令
+const handleCommand = () => {
+  axios
+    .post("/back/command", commandData)
+    .then((res) => {
+      if (res.data.code == 0) {
+        commandId.value = res.data.data;
+        console.log(commandId.value);
+      }
+    })
+    .catch((err) => {});
+};
+
+// 提交参数
+const handleArg = () => {
+  argData.commandId = commandId;
+  axios
+    .post("/back/arg", argData)
+    .then((res) => {
+      if (res.data.code == 0) {
+      }
+    })
+    .catch((err) => {});
 };
 </script>
 
