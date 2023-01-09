@@ -19,12 +19,6 @@
             name="groupId"
             :rules="[{ required: true, message: '请选择分组' }]"
           >
-            <!-- <a-tree-select -->
-            <!--   v-model:value="commandData.groupId" -->
-            <!--   placeholder="Please select" -->
-            <!--   :tree-data="groupData.data" -->
-            <!-- > -->
-            <!-- </a-tree-select> -->
             <a-tree-select
               v-model:value="commandData.groupId"
               show-search
@@ -32,12 +26,13 @@
               :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
               placeholder="请选择"
               allow-clear
+              :height="233"
               tree-default-expand-all
               :tree-data="groupData.data"
               :fieldNames="{ value: 'groupId' }"
             >
-              <template #title="{ groupId, name }">
-                {{ name }} {{ groupId }}
+              <template #title="{ name }">
+                {{ name }}
               </template>
             </a-tree-select>
           </a-form-item>
